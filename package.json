@@ -1,0 +1,54 @@
+{
+  "name": "webthings-dht",
+  "version": "1.0.0",
+  "description": "A simple WebThings module using DHT sensors",
+  "license": "MIT",
+  "main": "dist/dht.js",
+  "browser": "dist/dht.umd.js",
+  "module": "dist/dht.es.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TwiggyBuffalo/webthings-dht.git"
+  },
+  "homepage": "https://github.com/TwiggyBuffalo/webthings-dht",
+  "bugs": "https://github.com/TwiggyBuffalo/webthings-dht/issues",
+  "author": {
+    "name": "TwiggyBuffalo",
+    "email": "danielcurran@live.co.za"
+  },
+  "scripts": {
+    "start": "npm run dev",
+    "pretest": "npm run lint",
+    "test": "jest",
+    "test:watch": "npm test -- --watch",
+    "coverage": "npm test -- --coverage",
+    "lint": "standard --fix --verbose",
+    "build": "microbundle --name=dht",
+    "prepublish": "cp src/index.d.ts dist/",
+    "dev": "microbundle --name=dht watch"
+  },
+  "keywords": [
+    "IoT",
+    "WebThings",
+    "Raspberry Pi",
+    "Gateway",
+    "Sensors",
+    "DHT"
+  ],
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@babel/preset-env": "^7.6.3",
+    "jest": "^24.9.0",
+    "microbundle": "^0.11.0",
+    "standard": "^14.3.1"
+  },
+  "standard": {
+    "ignore": "dist",
+    "env": {
+      "jest": true
+    }
+  }
+}
