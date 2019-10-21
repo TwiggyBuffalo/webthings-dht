@@ -36,33 +36,28 @@ const config = {
   }
 }
 
-class WebThingsDHT {
-  constructor(opt = config) {
-    this.opt = opt
-  }
-  init() {
-    const { id, name, description, properties, interval } = this.opt
-    const dht = new Thing(id, name, ['Temperature', 'Humidity'], description);
-    const dht_temperature = new Value(0.0);
-    const dht_humidity = new Value(0.0);
-    dht.addProperty(new Property(dht, 'temperature', dht_temperature, properties.temperature));
-    dht.addProperty(new Property(dht, 'humidity', dht_humidity, properties.humidity));
-    setInterval(() => {
-      try {
-        const { temperature, humidity } = this.read()
-        // Update the underlying value, which in turn notifies all listeners
-        dht_temperature.notifyOfExternalUpdate(temperature);
-        dht_humidity.notifyOfExternalUpdate(humidity);
-      } catch (e) {
-        console.log(e)
-      }
-    }, interval);
-    return dht
-  }
-  read() {
-    const { type, pin } = this.opt.sensor
+const WebThingsDHT = (opt = config) => {
+  const read = () => {
+    const { type, pin } = opt.sensor
     return dhtLib.read(type, pin)
   }
+  const { id, name, description, properties, interval } = this.opt
+  const dht = new Thing(id, name, ['Temperature', 'Humidity'], description);
+  const dht_temperature = new Value(0.0);
+  const dht_humidity = new Value(0.0);
+  dht.addProperty(new Property(dht, 'temperature', dht_temperature, properties.temperature));
+  dht.addProperty(new Property(dht, 'humidity', dht_humidity, properties.humidity));
+  setInterval(() => {
+    try {
+      const { temperature, humidity } = read()
+      // Update the underlying value, which in turn notifies all listeners
+      dht_temperature.notifyOfExternalUpdate(temperature);
+      dht_humidity.notifyOfExternalUpdate(humidity);
+    } catch (e) {
+      console.log(e)
+    }
+  }, interval);
+  return dht
 }
 
 module.exports = WebThingsDHT
