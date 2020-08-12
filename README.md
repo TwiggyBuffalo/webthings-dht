@@ -1,6 +1,6 @@
 <h1 align="center">☁️ WebThings DHT ☁️</h1>
 <div align="center">
-  <strong>A simple module for using DHT sensors in [Mozilla WebThings](https://iot.mozilla.org/framework/)</strong>
+  <strong>A simple module for using DHT sensors in Mozilla WebThings</strong>
 </div>
 <br>
 
@@ -33,11 +33,11 @@ This example shows a zero config server:
 
 ```js
 	import { WebThingServer } from 'webthing';
-  import WebThingDHT from 'webthings-dht';
-  
+ 	import WebThingDHT from 'webthings-dht';
+ 
 	const dhtSensor = new WebThingDHT();
-  const server = new WebThingServer(new SingleThing(dhtSensor), 8888);
-  
+ 	const server = new WebThingServer(new SingleThing(dhtSensor), 8888);
+
 	server.start().catch(console.error);
 ```
 
@@ -45,7 +45,7 @@ The default config is:
 
 ```js
 const config = {
-	id: 'urn:dev:ops:dht-22-sensor',
+  id: 'urn:dev:ops:dht-22-sensor',
   name: 'DHT-22',
   description: 'Ambient temperature & humidity sensor',
   interval: 3000, // The invterval for fetching readings from the sensor (3s)
