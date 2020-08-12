@@ -1,10 +1,9 @@
-<h1 align="center">☁️ WebThings DHT</h1>
+<h1 align="center">☁️ WebThings DHT ☁️</h1>
 <div align="center">
   <strong>A simple module for using DHT sensors in [Mozilla WebThings](https://iot.mozilla.org/framework/)</strong>
 </div>
 <br>
 
-<h2>Table of Contents</h2>
 <details>
   <summary>Table of Contents</summary>
   <li><a href="#about">About</a></li>
@@ -16,7 +15,7 @@
 
 ## About
 
-This module is a small wrapper (Less than 700 bytes) around the [node-dht-sensor](https://github.com/momenso/node-dht-sensor) that provides a single line config to integrate with the [Mozilla WebThings Framework](https://iot.mozilla.org/framework/)
+This module is a small wrapper (~500 bytes) around the [node-dht-sensor](https://github.com/momenso/node-dht-sensor) made as simple as possible for the [Mozilla WebThings Framework](https://iot.mozilla.org/framework/)
 
 ## Install
 
@@ -33,24 +32,26 @@ $ yarn add webthings-dht
 This example shows a zero config server:
 
 ```js
-	var WebThingServer = require('webthing').WebThingServer
-	var WebThingDHT = require('webthings-dht') // import the webthings-dht module
-	var thing = new WebThingDHT() // Instanciate with no config
-	var server = new WebThingServer(new SingleThing(thing), 8888);
+	import { WebThingServer } from 'webthing';
+  import WebThingDHT from 'webthings-dht';
+  
+	const dhtSensor = new WebThingDHT();
+  const server = new WebThingServer(new SingleThing(dhtSensor), 8888);
+  
 	server.start().catch(console.error);
 ```
 
-You can configure the module as follows:
+The default config is:
 
 ```js
-new WebThingDHT({
+const config = {
 	id: 'urn:dev:ops:dht-22-sensor',
   name: 'DHT-22',
   description: 'Ambient temperature & humidity sensor',
-  interval: 3000, // The invterval for fetching readings from the sensor
+  interval: 3000, // The invterval for fetching readings from the sensor (3s)
   sensor: {
-    type: 22, // DHT sensor type. See node-dht-sensor
-    pin: 4, // DHT sensor GPIO pin number. See node-dht-sensor
+    type: 22, // DHT sensor type. See node-dht-sensor (11 || 22)
+    pin: 4, // GPIO pin number
   },
   properties: {
     temperature: {
@@ -73,8 +74,6 @@ new WebThingDHT({
     }
   }
 })
-
-// Use as normal
 ```
 
 ## Contribute
