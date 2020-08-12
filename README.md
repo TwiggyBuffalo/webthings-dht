@@ -23,7 +23,7 @@ This module is a small wrapper (Less than 700 bytes) around the [node-dht-sensor
 With package manager:
 
 ```sh
-$ npm install --save webthings-dht
+$ npm install webthings-dht
 # OR
 $ yarn add webthings-dht
 ```

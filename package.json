@@ -25,7 +25,6 @@
     "coverage": "npm test -- --coverage",
     "lint": "standard --fix --verbose",
     "build": "microbundle --name=dht",
-    "prepublish": "cp src/index.d.ts dist/",
     "dev": "microbundle --name=dht watch"
   },
   "keywords": [
@@ -40,15 +39,11 @@
     "dist"
   ],
   "devDependencies": {
-    "@babel/preset-env": "^7.6.3",
-    "jest": "^24.9.0",
-    "microbundle": "^0.11.0",
-    "standard": "^14.3.1"
+    "@babel/preset-env": "^7.11.0",
+    "microbundle": "^0.12.3",
+    "standard": "^14.3.4"
   },
   "standard": {
-    "ignore": "dist",
-    "env": {
-      "jest": true
-    }
+    "ignore": "dist"
   }
 }
